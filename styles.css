@@ -201,3 +201,18 @@ button {
     flex-direction: column;
   }
 }
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	width: 70%;
+	margin: 0 auto;
+}
+.header a {
+	color: white;
+	padding: 31px 16px;
+	text-decoration: none;
+	font-size: 26px;
+	height: 5px;
+	margin: -12px 0;
+}
