@@ -21,7 +21,9 @@ fetch("./texts.json")
 
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
+ // console.log(e)
   const newLetter = e.key;
+//console.log(newLetter)
 
   // Handle backspace press
   if (newLetter == "Backspace") {
@@ -43,9 +45,11 @@ const typeController = (e) => {
   const newLetterCorrect = validate(newLetter);
 
   if (newLetterCorrect) {
+    errorCount;
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    errorCount++
   }
 
   // check if given question text is equal to user typed text
@@ -92,6 +96,7 @@ const gameOver = () => {
   errorCount = 0;
   userText = "";
   display.classList.add("inactive");
+  
 };
 
 const closeModal = () => {
@@ -111,19 +116,19 @@ const start = () => {
   
     // finished timer
     if (count == 0) {
-      countdownOverlay.innerHTML = '';
-      // -------------- START TYPING -----------------
+           // -------------- START TYPING -----------------
       document.addEventListener("keydown", typeController);
-      countdownOverlay.style.display = "flex";
-      display.classList.remove("inactive");
-
+      countdownOverlay.style.display = "none";
+      display.classList.add("inactive");
       clearInterval(startCountdown);
       startTime = new Date().getTime();
+      
+      
     }
     count--;
     
   }, 1000);
-  
+   
 };
 
 // START Countdown
@@ -135,9 +140,13 @@ displayHistory();
 // Show typing time spent
 setInterval(() => {
   const currentTime = new Date().getTime();
- // console.log(currentTime)
+ // Math.round(currentTime)
+  console.log(currentTime)
   const timeSpent = (currentTime - startTime) / 1000;
+  const timeSpentNumber = parseInt(timeSpent);
+  Math.round(timeSpent)
+ //console.log(timeSpent);
 
 
-  document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
+  document.getElementById("show-time").innerHTML = `${startTime ? timeSpentNumber : 0} seconds`;
 }, 1000);
