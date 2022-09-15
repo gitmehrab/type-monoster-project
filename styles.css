@@ -63,7 +63,7 @@ body {
 }
 #result {
   position: fixed;
-  top: 50%; 
+  top: 300px; 
   left: 50%;
   transform: translate(-50%, -50%);
   height: 250px;
@@ -143,9 +143,20 @@ button {
 
 #histories {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    flex-wrap: wrap;  
+    width: 70%;
+    margin: 0 auto;
+   justify-content: space-around; 
 }
+
+ @media only screen and (min-width: 992px) {
+  #histories {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 95%;
+    gap: 29px 8px;
+  }
+} 
 
 .card {
   width: 100%;
